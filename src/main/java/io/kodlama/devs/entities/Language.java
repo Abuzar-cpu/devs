@@ -13,4 +13,9 @@ public class Language {
     public Language(String name) {
         this.name = name;
     }
+
+    public Language(int id, String name) {
+        this.name = name;
+        this.id = id;
+    }
 }

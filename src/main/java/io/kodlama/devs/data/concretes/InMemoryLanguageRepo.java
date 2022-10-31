@@ -11,10 +11,11 @@ import java.util.List;
 public class InMemoryLanguageRepo implements LanguageRepository {
     private final List<Language> languages = new ArrayList<>();
 
-    private static int lastId = 0;
+    private static int lastId = 2;
 
     public InMemoryLanguageRepo() {
-
+        languages.add(new Language(0, "C#"));
+        languages.add(new Language(1, "Java"));
     }
 
     public List<Language> getAll() {
