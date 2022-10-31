@@ -89,6 +89,8 @@ public class InMemoryLanguageRepo implements LanguageRepository {
     public Boolean updateLanguage(Language language) {
         if(language.getId() >= this.languages.size())
             return false;
+
+        // Used get method for faster access
         Language languageToUpdate = this.languages.get(language.getId());
         if(languageToUpdate.getStatus() == 0)
             return false;
