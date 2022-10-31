@@ -22,7 +22,7 @@ public class LanguagesController {
         return this.languageService.getAll();
     }
 
-    @PostMapping("add")
+    @PutMapping("add")
     public Language addLanguage(@RequestBody Language language) {
         return this.languageService.addLanguage(language);
     }
@@ -35,5 +35,18 @@ public class LanguagesController {
     @GetMapping("getbyname")
     public Language getByName(@RequestParam String name) {
         return this.languageService.getByName(name);
+    }
+
+    @PostMapping("update")
+    public Boolean updateLanguage(@RequestBody Language language) {
+        return this.languageService.updateLanguage(language);
+    }
+
+    @DeleteMapping("delete")
+    public Language deleteLanguageByName(@RequestParam String name){
+        return this.languageService.deleteLanguageByName(name);
+    }
+    public Language deleteLanguageById(@RequestParam int id){
+        return this.languageService.deleteLanguageById(id);
     }
 }

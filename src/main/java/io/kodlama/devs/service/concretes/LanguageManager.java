@@ -35,4 +35,19 @@ public class LanguageManager implements LanguageService {
     public Language getByName(String name){
         return this.repository.getByName(name);
     }
+
+    @Override
+    public Language deleteLanguageByName(String name) {
+        return this.repository.deleteLanguageByName(name);
+    }
+
+    @Override
+    public Language deleteLanguageById(int id) {
+        return this.repository.deleteLanguageById(id);
+    }
+
+    @Override
+    public Boolean updateLanguage(Language language) {
+        return this.repository.updateLanguage(language);
+    }
 }

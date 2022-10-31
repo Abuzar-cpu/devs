@@ -9,7 +9,7 @@ import lombok.*;
 public class Language {
     private int id = -1;
     private String name;
-
+    private int status = 1;
     public Language(String name) {
         this.name = name;
     }
