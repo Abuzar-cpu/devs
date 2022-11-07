@@ -2,51 +2,52 @@ package io.kodlama.devs.web.api.controllers;
 
 import io.kodlama.devs.entities.Language;
 import io.kodlama.devs.service.abstracts.LanguageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import io.kodlama.devs.service.requests.AddLanguageRequest;
+import io.kodlama.devs.service.responses.GetAllLanguagesResponse;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/languages/")
+@Slf4j
 public class LanguagesController {
-    private final LanguageService languageService;
+  private final LanguageService languageService;
 
-    @Autowired
-    public LanguagesController(LanguageService service) {
-        this.languageService = service;
-    }
+  @Autowired
+  public LanguagesController(LanguageService service) {
+    this.languageService = service;
+  }
 
-    @GetMapping("getall")
-    public List<Language> getAll() {
-        return this.languageService.getAll();
-    }
+  @GetMapping("getall")
+  public List<GetAllLanguagesResponse> getAll() {
+    return this.languageService.getAll();
+  }
 
-    @PutMapping("add")
-    public Language addLanguage(@RequestBody Language language) {
-        return this.languageService.addLanguage(language);
-    }
+  @PostMapping("add")
+  public Boolean add(@RequestBody AddLanguageRequest language) {
+    return this.languageService.add(language);
+  }
 
-    @GetMapping("getbyid/{id}")
-    public Language getById(@PathVariable int id) {
-        return this.languageService.getById(id);
-    }
+  @DeleteMapping("delete")
+  public void deleteLanguageByName(@RequestParam String name) {
+    this.languageService.deleteLanguageByName(name);
+  }
 
-    @GetMapping("getbyname")
-    public Language getByName(@RequestParam String name) {
-        return this.languageService.getByName(name);
-    }
+  @PatchMapping("update")
+  public Language updateLanguage(@RequestBody Language language) {
+    this.languageService.deleteLanguageByName(language.getName());
+    System.out.println(language.getStatus());
 
-    @PostMapping("update")
-    public Boolean updateLanguage(@RequestBody Language language) {
-        return this.languageService.updateLanguage(language);
-    }
+    return this.languageService.updateLanguage(language);
+  }
 
-    @DeleteMapping("delete")
-    public Language deleteLanguageByName(@RequestParam String name){
-        return this.languageService.deleteLanguageByName(name);
-    }
-    public Language deleteLanguageById(@RequestParam int id){
-        return this.languageService.deleteLanguageById(id);
-    }
 }

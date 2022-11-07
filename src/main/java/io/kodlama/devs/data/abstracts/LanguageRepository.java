@@ -1,22 +1,8 @@
 package io.kodlama.devs.data.abstracts;
 
 import io.kodlama.devs.entities.Language;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface LanguageRepository {
-    List<Language> getAll();
-
-    Language addLanguage(Language language);
-
-    Language getByName(String name);
-
-    Language getById(int id);
-
-    Language deleteLanguageByName(@RequestParam String name);
-
-    Language deleteLanguageById(@RequestParam int id);
-
-    Boolean updateLanguage(Language language);
+public interface LanguageRepository extends JpaRepository<Language, Integer> {
+  Language findLanguageByName(String name);
 }
