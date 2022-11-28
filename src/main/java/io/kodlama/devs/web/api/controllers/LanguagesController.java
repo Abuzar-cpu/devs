@@ -1,9 +1,10 @@
 package io.kodlama.devs.web.api.controllers;
 
-import io.kodlama.devs.entities.Language;
 import io.kodlama.devs.service.abstracts.LanguageService;
 import io.kodlama.devs.service.requests.AddLanguageRequest;
+import io.kodlama.devs.service.requests.UpdateLanguageById;
 import io.kodlama.devs.service.responses.GetAllLanguagesResponse;
+import io.kodlama.devs.service.responses.UpdateLanguageResponse;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +43,8 @@ public class LanguagesController {
     this.languageService.deleteLanguageByName(name);
   }
 
-  @PatchMapping("update")
-  public Language updateLanguage(@RequestBody Language language) {
-    this.languageService.deleteLanguageByName(language.getName());
-    System.out.println(language.getStatus());
-
-    return this.languageService.updateLanguage(language);
+  @PatchMapping("updateById")
+  public UpdateLanguageResponse updateLanguageById(@RequestBody UpdateLanguageById language) {
+    return this.languageService.updateLanguageById(language);
   }
-
 }

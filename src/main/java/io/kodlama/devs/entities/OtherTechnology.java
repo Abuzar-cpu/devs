@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,7 +29,17 @@ public class OtherTechnology {
   @Column(name = "name")
   private String name;
 
+  @Column(name = "status")
+  private int status;
+
   @ManyToOne()
   @JsonIgnore
   private Language language;
+
+  public OtherTechnology(int technologyId, String name, Language language) {
+    this.technologyId = technologyId;
+    this.name = name;
+    this.language = language;
+    this.status = 1;
+  }
 }
